@@ -8,7 +8,7 @@
 
 ## 📚 Diagrama de Classes (Domínio do Problema)
 
-![Diagrama de Classes](diagrama-classes.png)
+![Diagrama de Classes](docs/diagrama.png)
 
 ---
 
