@@ -1,6 +1,7 @@
 package com.devtask.backend.controller;
 
-import com.devtask.backend.model.Task;
+import com.devtask.backend.dto.CreateTaskRequest;
+import com.devtask.backend.dto.TaskDTO;
 import com.devtask.backend.service.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,25 +20,25 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<Task> getAll() {
+    public List<TaskDTO> getAll() {
         return service.getAllTasks();
     }
 
     @GetMapping("/project/{projectId}")
-    public List<Task> getByProject(@PathVariable Long projectId) {
+    public List<TaskDTO> getByProject(@PathVariable Long projectId) {
         return service.getTasksByProjectId(projectId);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getById(@PathVariable Long id) {
+    public ResponseEntity<TaskDTO> getById(@PathVariable Long id) {
         return service.getTaskById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Task create(@RequestBody Task task) {
-        return service.createTask(task);
+    public TaskDTO create(@RequestBody CreateTaskRequest request) {
+        return service.createTask(request);
     }
 
     @DeleteMapping("/{id}")

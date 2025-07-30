@@ -1,10 +1,12 @@
 package com.devtask.backend.controller;
 
-import com.devtask.backend.model.Project;
+import com.devtask.backend.dto.CreateProjectRequest;
+import com.devtask.backend.dto.ProjectDTO;
 import com.devtask.backend.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,20 +21,20 @@ public class ProjectController {
     }
 
     @GetMapping
-    public List<Project> getAll() {
+    public List<ProjectDTO> getAll() {
         return service.getAllProjects();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Project> getById(@PathVariable Long id) {
+    public ResponseEntity<ProjectDTO> getById(@PathVariable Long id) {
         return service.getProjectById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Project create(@RequestBody Project project) {
-        return service.createProject(project);
+    public ProjectDTO create(@RequestBody @Valid CreateProjectRequest request) {
+        return service.createProject(request);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,7 @@
 package com.devtask.backend.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Task {
@@ -12,6 +13,9 @@ public class Task {
     private String title;
     private String description;
     private String status;
+    private String prioridade;
+    private LocalDate dataCriacao;
+    private LocalDate dataVencimento;
 
     @ManyToOne
     @JoinColumn(name = "project_id")
@@ -48,6 +52,30 @@ public class Task {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public LocalDate getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(LocalDate dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
     public Project getProject() {
