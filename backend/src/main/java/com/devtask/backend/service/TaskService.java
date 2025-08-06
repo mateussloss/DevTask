@@ -7,6 +7,8 @@ import com.devtask.backend.model.Task;
 import com.devtask.backend.repository.ProjectRepository;
 import com.devtask.backend.repository.TaskRepository;
 import org.springframework.stereotype.Service;
+import com.devtask.backend.dto.UpdateTaskRequest;
+import com.devtask.backend.dto.EditTaskRequest;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -60,6 +62,31 @@ public class TaskService {
 
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
+    }
+
+    public Optional<TaskDTO> updateTask(Long id, UpdateTaskRequest req) {
+        return taskRepository.findById(id)
+            .map(task -> {
+                task.setTitle(req.getTitulo());
+                task.setDescription(req.getDescricao());
+                task.setStatus(req.getStatus());
+                task.setPrioridade(req.getPrioridade());
+                task.setDataVencimento(req.getDataVencimento());
+                Task updated = taskRepository.save(task);
+                return toDTO(updated);
+            });
+    }
+    public Optional<TaskDTO> editTask(Long id, EditTaskRequest req) {
+    return taskRepository.findById(id)
+      .map(task -> {
+        task.setTitle(req.getTitulo());
+        task.setDescription(req.getDescricao());
+        task.setStatus(req.getStatus());
+        task.setPrioridade(req.getPrioridade());
+        task.setDataVencimento(req.getDataVencimento());
+        Task updated = taskRepository.save(task);
+        return toDTO(updated);
+      });
     }
 
     private TaskDTO toDTO(Task task) {

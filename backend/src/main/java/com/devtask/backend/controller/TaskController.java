@@ -5,6 +5,10 @@ import com.devtask.backend.dto.TaskDTO;
 import com.devtask.backend.service.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.devtask.backend.dto.EditTaskRequest;
+import com.devtask.backend.dto.UpdateTaskRequest;
+import jakarta.validation.Valid;
+
 
 import java.util.List;
 
@@ -45,4 +49,25 @@ public class TaskController {
     public void delete(@PathVariable Long id) {
         service.deleteTask(id);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskDTO> update(
+            @PathVariable Long id,
+            @RequestBody @Valid UpdateTaskRequest request
+    ) {
+        return service.updateTask(id, request)
+                      .map(ResponseEntity::ok)
+                      .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<TaskDTO> edit(
+        @PathVariable Long id,
+        @RequestBody @Valid EditTaskRequest req
+    ) {
+        return service.editTask(id, req)
+                    .map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+    }
+
 }
