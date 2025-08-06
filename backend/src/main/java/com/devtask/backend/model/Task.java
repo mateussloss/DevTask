@@ -21,7 +21,6 @@ public class Task {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

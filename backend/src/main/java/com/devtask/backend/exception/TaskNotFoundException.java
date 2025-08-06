@@ -1,4 +1,3 @@
-// exception/TaskNotFoundException.java
 package com.devtask.backend.exception;
 
 public class TaskNotFoundException extends RuntimeException {

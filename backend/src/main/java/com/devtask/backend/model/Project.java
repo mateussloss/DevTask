@@ -1,4 +1,3 @@
-// model/Project.java
 package com.devtask.backend.model;
 
 import jakarta.persistence.*;

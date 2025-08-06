@@ -1,4 +1,3 @@
-// src/TaskForm.js
 import { useState } from 'react';
 import { createTask } from './api';
 
@@ -22,14 +21,12 @@ export default function TaskForm({ projetoId, onCreated }) {
         descricao,
         status,
         prioridade,
-        // data de criação hoje
         dataCriacao: new Date().toISOString().slice(0, 10),
         dataVencimento: dataVencimento || null,
-        projetoId: projetoId    // <- aqui garantir que enviamos projetoId
+        projetoId: projetoId
       };
       const res = await createTask(body);
       onCreated(res.data);
-      // limpar formulário
       setTitulo('');
       setDescricao('');
       setDataVencimento('');

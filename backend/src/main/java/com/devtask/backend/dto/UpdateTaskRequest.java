@@ -14,7 +14,6 @@ public class UpdateTaskRequest {
     private String prioridade;
     private LocalDate dataVencimento;
 
-    // ======== getters ========
     public String getTitulo() {
         return titulo;
     }
@@ -31,7 +30,6 @@ public class UpdateTaskRequest {
         return dataVencimento;
     }
 
-    // ======== setters ========
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

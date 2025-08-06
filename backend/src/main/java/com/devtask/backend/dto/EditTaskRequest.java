@@ -10,7 +10,6 @@ public class EditTaskRequest {
     @NotBlank private String prioridade;
     private LocalDate dataVencimento;
 
-    // getters...
     public String getTitulo()        { return titulo; }
     public String getDescricao()     { return descricao; }
     public String getStatus()        { return status; }

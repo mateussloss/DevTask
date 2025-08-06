@@ -1,4 +1,3 @@
-// src/main/java/com/devtask/backend/config/SecurityConfig.java
 package com.devtask.backend.config;
 
 import org.springframework.context.annotation.Bean;
@@ -15,11 +14,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(org.springframework.security.config.annotation.web.builders.HttpSecurity http) throws Exception {
         http
-          .csrf(csrf -> csrf.disable())                          // desliga CSRF
+          .csrf(csrf -> csrf.disable())
           .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())  
           .sessionManagement(sess -> sess.sessionCreationPolicy(STATELESS))
-          .httpBasic(Customizer.withDefaults());                 // mantém Basic Auth, mas libera tudo
-
+          .httpBasic(Customizer.withDefaults()); 
         return http.build();
     }
 }
